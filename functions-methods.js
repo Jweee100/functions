@@ -62,12 +62,12 @@ function checkEmailValidity(email){
     const last = email.charAt(email.length-1);
     if (last.includes(".") ||
         email.includes(",")){
-        return "false";
+        return false;
     }
     if (email.includes("@", ".")){
-        return "true";
+        return true;
     } else {
-       return "false";
+       return false;
     }
 }
 

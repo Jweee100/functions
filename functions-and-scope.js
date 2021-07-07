@@ -1,3 +1,4 @@
+
 // Je gaat functies schrijven die we kunnen hergebruiken om een lijst met eindcijfers van studenten te checken. Je zult over de cijfers heen moeten itereren (hoe pak je dat aan?),
 // maar ook een manier moeten vinden om hetgeen dat je verzamelt ergens te bundelen. Op deze manier zul je ontdekken hoe je omgaat met scope. Pak vooral het hoofdstuk op EdHub over for-loops er nog eens bij!
 // Tip: je mag hier geen ingebouwde object methoden gebruiken, dus daar hoef je niet naar te kijken.
@@ -13,21 +14,43 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // * Hoe zorg ik ervoor dat dit ook werkt wanneer de array 100 entries bevat?
 // * Hoe zorgt ik ervoor dat wanneer ik een cijfer tegenkom die aan de conditie voldoet, ik dit ergens kan bijhouden?
 // Log het antwoord in de terminal.
-
 // ---- Verwachte uitkomst: 6
+console.log("--------------------- opdracht 1a ---------------------")
 
+count = 0;
+
+for (let i = 0; i < grades.length; i++){
+    const current = grades[i];
+    if (current > 7)
+        count++;
+}
+console.log (count);
 
 /*  1b: Omschrijven tot een herbruikbare functie   */
 // Schrijf een functie genaamd cumLaude, die een array van cijfers verwacht (zoals grades) en het aantal Cum laude studenten teruggeeft. Gebruik hiervoor jouw antwoord van 1a.
 // Zorg ervoor dat jouw functie ook werkt als we een andere array met eindcijfers willen checken, zoals bijvoorbeeld: [6, 4, 5] of [8, 9, 4, 6, 10].
 // Log het antwoord in de terminal.
 
+
 // ---- Verwachte uitkomsten:
 // cumLaude(grades) geeft 6
 // cumLaude([6, 4, 5]) geeft 0
 // cumLaude([8, 9, 4, 6, 10]) geeft 3
+console.log("--------------------- opdracht 1b ---------------------")
 
+function cumLaude(arrayGrades){
+    counter = 0
 
+    for (let i = 0; i < arrayGrades.length; i++){
+        const current = arrayGrades[i];
+        if (current > 7)
+            counter++;
+    }
+    return counter;
+}
+console.log(cumLaude(grades));
+console.log(cumLaude([6,4,5]));
+console.log(cumLaude([8,9,4,6,10]));
 
 
 /* Opdracht  2: Gemiddeld cijfer */
@@ -41,6 +64,14 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // Log het antwoord in de terminal.
 
 // ---- Verwachte uitkomst: 6.642857142857143
+console.log("--------------------- opdracht 2a ---------------------")
+let total = 0;
+
+for (let i = 0; i < grades.length; i++) {
+    total = grades[i] + total;
+}
+const average = total / grades.length;
+console.log(average);
 
 
 /* 2b: Omschrijven tot een herbruikbare functie */
@@ -52,13 +83,39 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // averageGrade(grades) geeft 6.642857142857143
 // averageGrade([6, 4, 5]) geeft xxxx
 // averageGrade([8, 9, 4, 6, 10]) geeft xxxx
+console.log("--------------------- opdracht 2b ---------------------")
+function averageGrade (array){
+    let total = 0;
 
+    for (let i = 0; i < array.length; i++) {
+        total = array[i] + total;
+    }
+    const average = total / grades.length;
+    return average
+}
+
+console.log(averageGrade(grades));
+console.log(averageGrade([6, 4, 5]));
+console.log(averageGrade([8, 9, 4, 6, 10]))
 
 /* 2c: Afronden op twee decimalen */
 // Zorg ervoor dat het gemiddelde cijfer dat wordt teruggegeven uit de functie netjes wordt afgerond op twee decimalen.
 // Tip: Google is your best friend!
+console.log("--------------------- opdracht 2c ---------------------")
+function averageGradeRound (array){
+    let total = 0;
 
+    for (let i = 0; i < array.length; i++) {
+        total = array[i] + total;
+    }
+    const average = total / grades.length;
+    const averageRound = Math.round(average*100)/100;
+    return averageRound
+}
 
+console.log(averageGradeRound(grades));
+console.log(averageGradeRound([6, 4, 5]));
+console.log(averageGradeRound([8, 9, 4, 6, 10]))
 
 
 /* Bonusopdracht: hoogste cijfer */
